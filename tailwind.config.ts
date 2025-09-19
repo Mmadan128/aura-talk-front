@@ -13,6 +13,10 @@ export default {
       },
     },
     extend: {
+      fontFamily: {
+        sans: ['Inter', 'system-ui', 'sans-serif'],
+        inter: ['Inter', 'system-ui', 'sans-serif'],
+      },
       colors: {
         border: "hsl(var(--border))",
         input: "hsl(var(--input))",
@@ -21,9 +25,11 @@ export default {
         foreground: "hsl(var(--foreground))",
         surface: "hsl(var(--surface))",
         "surface-elevated": "hsl(var(--surface-elevated))",
+        "surface-glass": "hsl(var(--surface-glass))",
         primary: {
           DEFAULT: "hsl(var(--primary))",
           dark: "hsl(var(--primary-dark))",
+          light: "hsl(var(--primary-light))",
           foreground: "hsl(var(--primary-foreground))",
         },
         secondary: {
@@ -32,6 +38,7 @@ export default {
         },
         accent: {
           DEFAULT: "hsl(var(--accent))",
+          secondary: "hsl(var(--accent-secondary))",
           foreground: "hsl(var(--accent-foreground))",
         },
         destructive: {
@@ -60,17 +67,29 @@ export default {
       },
       backgroundImage: {
         'gradient-primary': 'var(--gradient-primary)',
+        'gradient-secondary': 'var(--gradient-secondary)',
         'gradient-surface': 'var(--gradient-surface)',
+        'gradient-mesh': 'var(--gradient-mesh)',
         'gradient-glow': 'var(--gradient-glow)',
       },
       boxShadow: {
         'glow': 'var(--shadow-glow)',
+        'glow-soft': '0 0 20px hsl(var(--primary) / 0.2)',
         'elevated': 'var(--shadow-elevated)',
+        'floating': 'var(--shadow-floating)',
+        'glass': 'var(--shadow-glass)',
+      },
+      backdropBlur: {
+        'xs': '2px',
       },
       animation: {
+        'aurora': 'aurora 8s ease infinite',
+        'float-gentle': 'float-gentle 3s ease-in-out infinite',
         'pulse-glow': 'pulse-glow 2s ease-in-out infinite',
-        'message-slide-in': 'message-slide-in 0.3s ease-out',
+        'slide-up': 'slide-up 0.5s ease-out',
+        'slide-in-right': 'slide-in-right 0.4s ease-out',
         'typing-dots': 'typing-dots 1.4s ease-in-out infinite',
+        'shimmer': 'shimmer 2s infinite',
         "accordion-down": "accordion-down 0.2s ease-out",
         "accordion-up": "accordion-up 0.2s ease-out",
       },

@@ -1,7 +1,7 @@
 import React from 'react';
 import { SystemStatus } from '@/types/chat';
 import { Badge } from '@/components/ui/badge';
-import { CheckCircle, AlertCircle, Loader2 } from 'lucide-react';
+import { CheckCircle, AlertCircle, Loader2, Sparkles } from 'lucide-react';
 import { cn } from '@/lib/utils';
 
 interface StatusBadgeProps {
@@ -15,7 +15,7 @@ export const StatusBadge: React.FC<StatusBadgeProps> = ({ status, className }) =
       return {
         text: 'Error',
         icon: AlertCircle,
-        className: 'bg-error/10 text-error border-error/20',
+        className: 'bg-error/10 text-error border-error/20 shadow-glow-soft',
       };
     }
     
@@ -26,7 +26,7 @@ export const StatusBadge: React.FC<StatusBadgeProps> = ({ status, className }) =
         return {
           text: `Loading ${percentage}%`,
           icon: Loader2,
-          className: 'bg-warning/10 text-warning border-warning/20 animate-pulse',
+          className: 'bg-warning/10 text-warning border-warning/20 animate-pulse shadow-glow-soft',
           iconClassName: 'animate-spin',
         };
       }
@@ -34,7 +34,7 @@ export const StatusBadge: React.FC<StatusBadgeProps> = ({ status, className }) =
       return {
         text: 'Initializing',
         icon: Loader2,
-        className: 'bg-warning/10 text-warning border-warning/20',
+        className: 'bg-warning/10 text-warning border-warning/20 shadow-glow-soft',
         iconClassName: 'animate-spin',
       };
     }
@@ -42,23 +42,25 @@ export const StatusBadge: React.FC<StatusBadgeProps> = ({ status, className }) =
     return {
       text: 'Ready',
       icon: CheckCircle,
-      className: 'bg-success/10 text-success border-success/20',
+      className: 'bg-success/10 text-success border-success/20 shadow-glow-soft',
+      extraIcon: Sparkles,
     };
   };
 
-  const { text, icon: Icon, className: statusClassName, iconClassName } = getStatusInfo();
+  const { text, icon: Icon, className: statusClassName, iconClassName, extraIcon: ExtraIcon } = getStatusInfo();
 
   return (
     <Badge 
       variant="outline" 
       className={cn(
-        "flex items-center gap-1.5 text-xs font-medium transition-smooth",
+        "flex items-center gap-2 text-xs font-semibold px-3 py-1.5 rounded-xl transition-spring backdrop-blur-sm border",
         statusClassName,
         className
       )}
     >
-      <Icon className={cn("h-3 w-3", iconClassName)} />
-      {text}
+      <Icon className={cn("h-3.5 w-3.5", iconClassName)} />
+      <span className="font-semibold">{text}</span>
+      {ExtraIcon && <ExtraIcon className="h-3 w-3 animate-float-gentle" />}
     </Badge>
   );
 };
