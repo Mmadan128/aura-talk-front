@@ -4,6 +4,7 @@ import { ChatMessage } from '@/components/ChatMessage';
 import { TypingIndicator } from '@/components/TypingIndicator';
 import { ChatInput } from '@/components/ChatInput';
 import { StatusBadge } from '@/components/StatusBadge';
+import { CurrencyNotice } from '@/components/CurrencyNotice';
 import { Button } from '@/components/ui/button';
 import { ScrollArea } from '@/components/ui/scroll-area';
 import { Trash2, RotateCcw } from 'lucide-react';
@@ -81,6 +82,9 @@ export const ChatInterface: React.FC = () => {
           </div>
         </div>
       </header>
+
+      {/* Currency Notice */}
+      <CurrencyNotice />
 
       {/* Messages */}
       <div className="flex-1 relative">

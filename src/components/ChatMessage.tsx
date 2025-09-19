@@ -1,8 +1,10 @@
 import React from 'react';
 import { ChatMessage as ChatMessageType } from '@/types/chat';
 import { Avatar, AvatarFallback } from '@/components/ui/avatar';
+import { AudioControls } from '@/components/AudioControls';
 import { User, Bot } from 'lucide-react';
 import { cn } from '@/lib/utils';
+import { fixCurrencyInText } from '@/utils/currency';
 
 interface ChatMessageProps {
   message: ChatMessageType;
@@ -46,16 +48,28 @@ export const ChatMessage: React.FC<ChatMessageProps> = ({ message }) => {
           )}
         >
           <p className="text-sm leading-relaxed whitespace-pre-wrap break-words">
-            {message.content}
+            {isUser ? message.content : fixCurrencyInText(message.content)}
           </p>
         </div>
         
-        <span className="text-xs text-message-text-muted px-2">
-          {message.timestamp.toLocaleTimeString([], { 
-            hour: '2-digit', 
-            minute: '2-digit' 
-          })}
-        </span>
+        <div className={cn(
+          "flex items-center gap-2",
+          isUser ? "flex-row-reverse" : "flex-row"
+        )}>
+          <span className="text-xs text-message-text-muted px-2">
+            {message.timestamp.toLocaleTimeString([], { 
+              hour: '2-digit', 
+              minute: '2-digit' 
+            })}
+          </span>
+          
+          {!isUser && (
+            <AudioControls 
+              text={message.content}
+              className="opacity-0 group-hover:opacity-100 transition-smooth"
+            />
+          )}
+        </div>
       </div>
     </div>
   );
